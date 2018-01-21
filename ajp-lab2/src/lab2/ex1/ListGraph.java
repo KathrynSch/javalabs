@@ -53,12 +53,12 @@ public class ListGraph<V> implements Graph<V> {
 		String graphString= "Graph: \n";
 		Set<V> vertices = this.adjacencyList.keySet();
 		
-		Iterator it = vertices.iterator();
+		Iterator<V> it = vertices.iterator();
 		while(it.hasNext()) {
 			V parent = (V) it.next();
 			Set<V> children= this.getChildren(parent);
 			graphString += parent +" : "+ children.hashCode()+" -> ";
-			Iterator itChildren = children.iterator();
+			Iterator<V> itChildren = children.iterator();
 			while(itChildren.hasNext()) {
 				graphString += " "+ (V) itChildren.next();
 			}
@@ -87,6 +87,9 @@ public class ListGraph<V> implements Graph<V> {
 		graph.addEdge(c, f);
 		
 		System.out.println(graph.toString());
+		
+		DepthFirstSearch dfs = new DepthFirstSearch();
+		dfs.execute(graph, a);
 		
 	}
 	
