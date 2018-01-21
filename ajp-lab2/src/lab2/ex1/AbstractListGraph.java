@@ -3,6 +3,7 @@ package lab2.ex1;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 abstract class AbstractListGraph<V> implements Graph<V>{
@@ -35,18 +36,27 @@ abstract class AbstractListGraph<V> implements Graph<V>{
 		return this.adjacencyList.get(vertex); 
 	}
 	
+	public Set<V> getUniqueChildren(V vertex) {
+		return this.getUniqueAdjacencies().get(vertex); 
+	}
+	
 	protected abstract String getDotType() ;
+	
+	public HashMap<V, Set<V>> getUniqueAdjacencies(){
+		
+		return adjacencyList;
+	}
 	
 	@Override
 	public String toString() {	
 		
 		String graphString= "Graph: \n";
-		Set<V> vertices = this.adjacencyList.keySet();
+		Set<V> vertices = this.getUniqueAdjacencies().keySet();
 		
 		Iterator<V> it = vertices.iterator();
 		while(it.hasNext()) {
 			V parent = (V) it.next();
-			Set<V> children= this.getChildren(parent);
+			Set<V> children= this.getUniqueChildren(parent);
 			graphString += parent +" : "+ children.hashCode()+"\t"+ this.getDotType();
 			Iterator<V> itChildren = children.iterator();
 			while(itChildren.hasNext()) {
