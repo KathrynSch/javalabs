@@ -46,6 +46,9 @@ public class DirectedListGraph<V> extends AbstractListGraph<V>{
 		graph.addVertex(e);
 		graph.addVertex(f);
 		
+		//Set<Word> vertices = null;
+		//graph.addVertices(vertices);
+		
 		graph.addEdge(a, b);
 		graph.addEdge(b, c);
 		graph.addEdge(c, d);
@@ -56,10 +59,10 @@ public class DirectedListGraph<V> extends AbstractListGraph<V>{
 		
 		System.out.println(graph.toString());
 		
-		DepthFirstSearch dfs = new DepthFirstSearch();
-		dfs.execute(graph, a);
-		Word toto = new Word();
-		System.out.println(toto.toString());
+//		DepthFirstSearch dfs = new DepthFirstSearch();
+//		dfs.execute(graph, a);
+//		Word toto = new Word();
+//		System.out.println(toto.toString());
 	}
 	
 	

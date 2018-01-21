@@ -66,4 +66,23 @@ abstract class AbstractListGraph<V> implements Graph<V>{
 		}
 		return graphString;
 	}
+	
+	public Set<Word> addVertices(Set<? extends Word> vertices){
+		boolean isVertexAdded = false;
+		Iterator<Word> it = (Iterator<Word>) vertices.iterator();
+		Set<Word> rejectedVertices = null;
+		
+		while(it.hasNext()) {
+			Word vertex = (Word) it.next();
+			isVertexAdded = addVertex((V) vertex);			//returns true if vertex successfully added
+			
+			//If Vertex not added because already in graph
+			if(isVertexAdded == false) {
+				//add to Set of vertices not added to the graph
+				rejectedVertices.add(vertex);
+			}
+		}
+		
+		return rejectedVertices;
+	}
 }

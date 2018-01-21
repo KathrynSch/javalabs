@@ -1,7 +1,5 @@
 package lab2.ex1;
 
-import java.util.ArrayList;
-
 
 public class Word {
 
@@ -19,8 +17,7 @@ public class Word {
 		@Override
 		public String toString(){
 			ColoredWord theColor = ColoredWord.red;
-			String colorName =theColor.name();
-			s+= ", color = " + colorName;
+			s+= ", color = " + theColor.name();
 			
 			return s;
 		

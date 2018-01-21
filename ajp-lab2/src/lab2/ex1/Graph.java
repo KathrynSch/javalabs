@@ -13,6 +13,6 @@ public interface Graph<V> {
 	Set<V> getUniqueChildren(V vertex);
 	HashMap<V, Set<V>> getUniqueAdjacencies();
 	
-	//Set<V> addVertices(Set<V> vertices);
+	Set<Word> addVertices(Set<? extends Word> vertices);
 
 }
