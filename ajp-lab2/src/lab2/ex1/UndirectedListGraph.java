@@ -34,8 +34,10 @@ public class UndirectedListGraph<V> extends AbstractListGraph<V> {
 	
 	@Override
 	public HashMap<V, Set<V>> getUniqueAdjacencies(){
+		//make a copy of adjacency list
+		HashMap<V, Set<V>> tempAdjacency = this.adjacencyList ;
 		//go through all vertices
-		Set<V> vertices = this.adjacencyList.keySet();
+		Set<V> vertices = tempAdjacency.keySet();
 		Iterator<V> it = vertices.iterator();
 		while(it.hasNext()) {
 			V theParent = (V) it.next();
@@ -44,13 +46,13 @@ public class UndirectedListGraph<V> extends AbstractListGraph<V> {
 			while(itChildren.hasNext()) {
 				V theChild = (V)itChildren.next();
 				//check if reverse exists
-				Set<V> childrenList = adjacencyList.get(theChild);
+				Set<V> childrenList = tempAdjacency.get(theChild);
 				if(childrenList.contains(theParent)) {
 					//Remove vertex from adjacency list
-					adjacencyList.get(theChild).remove(theParent);
+					tempAdjacency.get(theChild).remove(theParent);
 				}
 			}
 		}
-		return adjacencyList;
+		return tempAdjacency;
 	}
 }

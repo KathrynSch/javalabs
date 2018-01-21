@@ -32,38 +32,4 @@ public class DirectedListGraph<V> extends AbstractListGraph<V>{
 		return "->";
 	}
 	
-
-	
-	
-	public static void main(String[] args) {
-		
-		UndirectedListGraph<String> graph = new UndirectedListGraph<>();
-		String a = "A", b="B", c="C", d="D", e="E", f="F";
-		graph.addVertex(a);
-		graph.addVertex(b);
-		graph.addVertex(c);
-		graph.addVertex(d);
-		graph.addVertex(e);
-		graph.addVertex(f);
-		
-		//Set<Word> vertices = null;
-		//graph.addVertices(vertices);
-		
-		graph.addEdge(a, b);
-		graph.addEdge(b, c);
-		graph.addEdge(c, d);
-		graph.addEdge(c, a);
-		graph.addEdge(d, b);
-		graph.addEdge(b, e);
-		graph.addEdge(c, f);
-		
-		System.out.println(graph.toString());
-		
-//		DepthFirstSearch dfs = new DepthFirstSearch();
-//		dfs.execute(graph, a);
-//		Word toto = new Word();
-//		System.out.println(toto.toString());
-	}
-	
-	
 }

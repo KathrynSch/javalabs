@@ -47,42 +47,65 @@ abstract class AbstractListGraph<V> implements Graph<V>{
 		return adjacencyList;
 	}
 	
+	protected String edgeString(V fromVertex, V toVertex) {
+		String edgeString = fromVertex+" "+ this.getDotType()+" "+toVertex+"\n";
+		return edgeString;
+	}
+	
 	@Override
 	public String toString() {	
 		
 		String graphString= "Graph: \n";
-		Set<V> vertices = this.getUniqueAdjacencies().keySet();
+		Set<V> vertices = this.adjacencyList.keySet();
 		
 		Iterator<V> it = vertices.iterator();
 		while(it.hasNext()) {
 			V parent = (V) it.next();
 			Set<V> children= this.getUniqueChildren(parent);
-			graphString += parent +" : "+ children.hashCode()+"\t"+ this.getDotType();
+			graphString += parent +" : "+ children.hashCode()+"\n";
+		}
+		it = vertices.iterator();
+		while(it.hasNext()) {
+			V parent = (V) it.next();
+			Set<V> children= this.getUniqueChildren(parent);
+			
 			Iterator<V> itChildren = children.iterator();
+			
 			while(itChildren.hasNext()) {
-				graphString += " "+ (V) itChildren.next();
+				V child =  (V) itChildren.next();
+				graphString += edgeString(parent,child);
 			}
-			graphString += "\n";
 		}
 		return graphString;
 	}
 	
-	public Set<Word> addVertices(Set<? extends Word> vertices){
-		boolean isVertexAdded = false;
-		Iterator<Word> it = (Iterator<Word>) vertices.iterator();
-		Set<Word> rejectedVertices = null;
-		
+	public Set<V> addVertices(Set<? extends Word> vertices){
+
+		Set<V> rejectedVertices = new HashSet<>();
+		Iterator<? extends Word> it = vertices.iterator();
+		//go through vertices to add	
 		while(it.hasNext()) {
-			Word vertex = (Word) it.next();
-			isVertexAdded = addVertex((V) vertex);			//returns true if vertex successfully added
-			
-			//If Vertex not added because already in graph
-			if(isVertexAdded == false) {
-				//add to Set of vertices not added to the graph
+			V vertex = (V) it.next();
+			boolean isExisting = false;
+			//check if vertex already in graph
+			Set<V> existingVertices = this.adjacencyList.keySet();
+			Iterator<V> existingIt = existingVertices.iterator();
+			// go through existing vertices
+			while(existingIt.hasNext()) {
+				V existingVertex = existingIt.next();
+				if(existingVertex.equals(vertex)) {
+					isExisting = true;
+				}
+			}
+			if(isExisting) {
+				// if already exists: do not add to graph, add to rejectedVertices
 				rejectedVertices.add(vertex);
 			}
+			else {	//if not, add to graph
+				this.addVertex(vertex);
+			}
+						
 		}
-		
 		return rejectedVertices;
 	}
 }
