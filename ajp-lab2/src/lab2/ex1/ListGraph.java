@@ -91,6 +91,9 @@ public class ListGraph<V> implements Graph<V> {
 		DepthFirstSearch dfs = new DepthFirstSearch();
 		dfs.execute(graph, a);
 		
+		Word toto = new Word();
+		System.out.println(toto.toString());
+		
 	}
 	
 	

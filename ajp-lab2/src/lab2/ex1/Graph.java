@@ -9,5 +9,7 @@ public interface Graph<V> {
 	//add node vertex to graph
 	boolean addVertex(V vertex);
 	Set<V> getChildren(V vertex);
+	
+	//Set<V> addVertices(Set<V> vertices);
 
 }
