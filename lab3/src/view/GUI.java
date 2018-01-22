@@ -2,6 +2,9 @@ package view;
 
 
 import javax.swing.*;
+
+import model.Model;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +13,13 @@ import java.awt.event.KeyEvent;
 /**
  * @author Frederic Fauberteau
  */
-public class GUI {
+public class GUI extends AbstractView implements View{
 
     private final JFrame frame;
     private final JList<String> list = new JList<>();
 
-    public GUI(String title, int width, int height) {
+    public GUI(Model model, String title, int width, int height) {
+    	super(model);
         frame = new JFrame(title);
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -47,6 +51,7 @@ public class GUI {
         panel.add(list, BorderLayout.CENTER);
     }
 
+    @Override
     public void start() {
         configJMenuBar();
         configJPanel();
@@ -57,5 +62,11 @@ public class GUI {
         GUI gui = new GUI("foo", 320, 240);
         gui.start();
     }
+
+	@Override
+	public void setController(GUIListener controller) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
