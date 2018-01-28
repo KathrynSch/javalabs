@@ -11,6 +11,10 @@ public abstract class AbstractView implements View{
 		this.model = model;
 	}
 	
+	/*
+	 * this method is protected because it will be used by the daughter classes
+	 * and is final because the model is initiated only once and can't be changed
+	 */
 	protected final Model getModel() {
 		return model;
 		

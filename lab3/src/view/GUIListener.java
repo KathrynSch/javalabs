@@ -2,9 +2,9 @@ package view;
 
 import java.awt.event.ActionListener;
 
-import javax.swing.text.JTextComponent;
+import javax.swing.JTextField;
 
 public interface GUIListener {
 
-	ActionListener getAddUserListener(JTextComponent textComponent);
+	ActionListener getAddUserListener(JTextField textComponent);
 }

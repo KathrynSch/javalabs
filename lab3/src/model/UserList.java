@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserList implements Model{
+public class UserList extends java.util.Observable implements Model{
 
 	private List<String> userList;
 	
@@ -13,6 +13,7 @@ public class UserList implements Model{
 	
 	public boolean addUser(String user) {
 		this.userList.add(user);
+		this.notifyObservers();
 		return true;
 	}
 	

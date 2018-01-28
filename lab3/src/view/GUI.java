@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Observable;
 
 /**
  * @author Frederic Fauberteau
@@ -47,6 +48,7 @@ public class GUI extends AbstractView implements View{
         frame.getContentPane().add(panel);
         panel.setLayout(new BorderLayout());
         final JTextField textField = new JTextField();
+        ActionListener actionListener = this.getController().getAddUserListener(textField);
         panel.add(textField, BorderLayout.PAGE_START);
         panel.add(list, BorderLayout.CENTER);
     }
@@ -57,16 +59,17 @@ public class GUI extends AbstractView implements View{
         configJPanel();
         frame.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        GUI gui = new GUI("foo", 320, 240);
-        gui.start();
-    }
-
+    
 	@Override
 	public void setController(GUIListener controller) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		this.list.add("hello", frame);
 	}
 
 }
