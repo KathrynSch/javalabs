@@ -13,6 +13,7 @@ public class UserList extends java.util.Observable implements Model{
 	
 	public boolean addUser(String user) {
 		this.userList.add(user);
+		this.setChanged();
 		this.notifyObservers();
 		return true;
 	}

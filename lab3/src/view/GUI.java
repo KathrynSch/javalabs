@@ -4,11 +4,13 @@ package view;
 import javax.swing.*;
 
 import model.Model;
+import model.UserList;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -17,7 +19,7 @@ import java.util.Observable;
 public class GUI extends AbstractView implements View{
 
     private final JFrame frame;
-    private final JList<String> list = new JList<>();
+    private JList<String> list = new JList<>();
 
     public GUI(Model model, String title, int width, int height) {
     	super(model);
@@ -48,7 +50,7 @@ public class GUI extends AbstractView implements View{
         frame.getContentPane().add(panel);
         panel.setLayout(new BorderLayout());
         final JTextField textField = new JTextField();
-        ActionListener actionListener = this.getController().getAddUserListener(textField);
+        textField.addActionListener(this.getController().getAddUserListener(textField));
         panel.add(textField, BorderLayout.PAGE_START);
         panel.add(list, BorderLayout.CENTER);
     }
@@ -60,16 +62,22 @@ public class GUI extends AbstractView implements View{
         frame.setVisible(true);
     }
     
-	@Override
-	public void setController(GUIListener controller) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		this.list.add("hello", frame);
+		if(arg0 instanceof UserList) {
+			DefaultListModel<String> userListTemp = new DefaultListModel<>();
+			for(String str : getModel().getData()) {
+				userListTemp.addElement(str);
+				list.setModel(userListTemp);
+			}
+		}
+		else if(arg0 instanceof Model) {
+			if(arg1 instanceof JList) {
+				list = (JList) arg1;
+			}
+		}
 	}
 
 }

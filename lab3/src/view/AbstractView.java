@@ -16,13 +16,17 @@ public abstract class AbstractView implements View{
 	 * and is final because the model is initiated only once and can't be changed
 	 */
 	protected final Model getModel() {
-		return model;
+		return this.model;
 		
 	}
 	protected final GUIListener getController() {
-		return controller;
+		return this.controller;
 		
 	}
 	
+	@Override
+	public void setController(GUIListener controller) {
+		this.controller = controller;
+	}
 	
 }

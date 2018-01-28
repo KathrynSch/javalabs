@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import model.UserList;
 import view.View;
@@ -20,7 +21,8 @@ public class Controller implements GUIListener{
 	public Controller(UserList model, View view) {
 		this.model = model;
 		this.view = view;
-		model.addObserver(view);
+		view.setController(this);
+		this.model.addObserver(view);
 	}
 	
 	public void start() {
@@ -32,10 +34,18 @@ public class Controller implements GUIListener{
 		textComponent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // what to do
+                model.addUser(textComponent.getText());
             }
         });
+		System.out.println(textComponent.getActionListeners().length);
 		return textComponent.getActionListeners()[0];
 	}
+	
+//	@Override
+//    public ActionListener getAddUserListener(JTextComponent textComponent) {
+//        return (ActionEvent ae) -> {
+//            model.addUser(textComponent.getText());
+//        };
+//    }
 
 }
