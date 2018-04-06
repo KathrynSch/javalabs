@@ -1,5 +1,5 @@
 package com.entities;
-// Generated 31 mars 2018 15:48:53 by Hibernate Tools 5.2.8.Final
+// Generated 6 avr. 2018 18:17:58 by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,7 +48,7 @@ public class Users implements java.io.Serializable {
 		this.userName = userName;
 	}
 
-	@Column(name = "email", length = 20)
+	@Column(name = "email", length = 40)
 	public String getEmail() {
 		return this.email;
 	}
