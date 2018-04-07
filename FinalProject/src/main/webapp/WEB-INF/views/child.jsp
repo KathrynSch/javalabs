@@ -10,15 +10,16 @@
 </head>
 <body onload="load();">
  
-        <input type="hidden" id="user_id">
-        Name: <input type="text" id="name" required="required" name="user_name"><br>
-        Email: <input type="email" id="email" required="required" name="email"><br>
+        <input type="hidden" id="child_id">
+        First Name: <input type="text" id="firstName" required="required" name="first_name"><br>
+        Last Name: <input type="text" id="lastName" required="required" name="last_name"><br>
+        Age: <input type="number" id="age" required="required" name="age"><br>
         <button onclick="submit();">Submit</button>
      
      
  
         <table id="table" border=1>
-            <tr> <th> Name </th> <th> Email </th> <th> Edit </th> <th> Delete </th> </tr>
+            <tr> <th> Last Name </th> <th> First Name </th> <th> Age </th> <th> Edit </th> <th> Delete </th> </tr>
          
         </table>
              
@@ -31,10 +32,11 @@
                 url:'saveOrUpdate',
                 type:'POST',
                 data:{
-                	user_id:$("#user_id").val(),
-                	user_name:$('#name').val(),
-                	email:$('#email').val()
-                },
+                	child_id:$("#child_id").val(),
+                	first_name:$('#firstName').val(),
+                	last_name:$('#lastName').val(), 
+                	age:$('#age').val()
+                	},
                 success: function(response){
                         alert(response.message);
                         load();    
@@ -46,7 +48,7 @@
          $.ajax({
             url:'delete',
             type:'POST',
-            data:{user_id:id},
+            data:{child_id:id},
             success: function(response){
                     alert(response.message);
                     load();
@@ -56,10 +58,10 @@
      
  
     edit = function (index){
-        $("#user_id").val(data[index].user_id);
-        $("#name").val(data[index].user_name);
-        $("#email").val(data[index].email);
-         
+        $("#child_id").val(data[index].child_id);
+        $("#firstName").val(data[index].first_name);
+        $("#lastName").val(data[index].last_name);
+        $("#age").val(data[index].age);
     }
      
      
@@ -71,7 +73,7 @@
                     data = response.data;
                     $('.tr').remove();
                     for(i=0; i<response.data.length; i++){                  
-                        $("#table").append("<tr class='tr'> <td> "+response.data[i].user_name+" </td> <td> "+response.data[i].email+" </td> <td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].user_id+");'> Delete </a>  </td> </tr>");
+                        $("#table").append("<tr class='tr'> <td> "+response.data[i].last_name+" </td> <td> "+response.data[i].first_name+" </td> <td> "+response.data[i].age+" </td> <td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].child_id+");'> Delete </a>  </td> </tr>");
                     }          
             }              
         });

@@ -9,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.daoapi.ChildDao;
 import com.daoimpl.EntityImpl;
+import com.entities.Child;
  
 @Repository("ChildDao")
 @Transactional
-public class ChildImpl extends EntityImpl<ChildImpl> implements ChildDao {
+public class ChildImpl extends EntityImpl<Child> implements ChildDao {
  
     @Autowired
     SessionFactory session;
- 
+    
+    public List<Child> list() {
+        return session.getCurrentSession().createQuery("from Child").list();
+    }
    
 }

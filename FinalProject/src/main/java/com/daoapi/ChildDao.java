@@ -1,8 +1,10 @@
 package com.daoapi;
 
+import java.util.List;
+
 import com.entities.Child;
 
-public interface ChildDao {
+public interface ChildDao extends EntityDao<Child>{
 
-    
+	 public List<Child> list();
 }

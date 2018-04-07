@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.entities.Users;
-import com.servicesapi.UsersService;
+import com.entities.Child;
+import com.servicesapi.ChildService;
 
 @Controller
-@RequestMapping("users")
-public class UsersController {
+@RequestMapping("child")
+public class ChildController {
 	
 	@Autowired
-	UsersService userServices;
+	ChildService childServices;
 	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
-		ModelAndView view =new ModelAndView("users");
+		ModelAndView view = new ModelAndView("child");
 		return view;
 	}
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getSaved(Users users){
-		
+	public @ResponseBody Map<String,Object> getSaved(Child child){
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		if(userServices.saveOrUpdate(users)){
+		if(childServices.saveOrUpdate(child)){
 			map.put("status","200");
-			map.put("message","Your record have been saved successfully");
+			map.put("message","Your record has been saved successfully");
 		}
 		
 		return map;
@@ -42,11 +41,10 @@ public class UsersController {
 	
 	
 	@RequestMapping(value="/list", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getAll(Users users){
-		
+	public @ResponseBody Map<String,Object> getAll(Child child){
 		Map<String,Object> map = new HashMap<String,Object>();
 	
-			List<Users> list = userServices.list();
+			List<Child> list = childServices.list();
 			
 			if (list != null){
 				map.put("status","200");
@@ -63,11 +61,10 @@ public class UsersController {
 	
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> delete(Users users){
-		
+	public @ResponseBody Map<String,Object> delete(Child child){
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		if(userServices.delete(users)){
+		if(childServices.delete(child)){
 			map.put("status","200");
 			map.put("message","Your record have been deleted successfully");
 		}

@@ -15,9 +15,18 @@ import javax.persistence.Table;
 @Table(name = "child", catalog = "nursery")
 public class Child implements java.io.Serializable {
 
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "child_id", unique = true, nullable = false)
 	private Integer childId;
+	
+	@Column(name = "first_name", length = 20)
 	private String firstName;
+	
+	@Column(name = "last_name", length = 20)
 	private String lastName;
+	
+	@Column(name = "age")
 	private Integer age;
 
 	public Child() {
@@ -28,11 +37,7 @@ public class Child implements java.io.Serializable {
 		this.lastName = lastName;
 		this.age = age;
 	}
-
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "child_id", unique = true, nullable = false)
+	
 	public Integer getChildId() {
 		return this.childId;
 	}
@@ -41,7 +46,6 @@ public class Child implements java.io.Serializable {
 		this.childId = childId;
 	}
 
-	@Column(name = "first_name", length = 20)
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -50,7 +54,6 @@ public class Child implements java.io.Serializable {
 		this.firstName = firstName;
 	}
 
-	@Column(name = "last_name", length = 20)
 	public String getLastName() {
 		return this.lastName;
 	}
@@ -58,8 +61,7 @@ public class Child implements java.io.Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	@Column(name = "age")
+	
 	public Integer getAge() {
 		return this.age;
 	}
@@ -67,5 +69,4 @@ public class Child implements java.io.Serializable {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-
 }

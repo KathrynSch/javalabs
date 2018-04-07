@@ -1,6 +1,5 @@
 package com.daoimpl;
 
-import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,29 +8,29 @@ import org.springframework.transaction.annotation.Transactional;
  
 import com.daoapi.EntityDao;
 
-public class EntityImpl<E> implements EntityDao{
+@Repository("EntityDao")
+@Transactional
+public class EntityImpl<E> implements EntityDao<E>{
+	
+	@Autowired
+    SessionFactory session;
 	
 	protected E entity;
 
 	@Override
 	public boolean saveOrUpdate(Object entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List list() {
-		// TODO Auto-generated method stub
-		return null;
+		session.getCurrentSession().saveOrUpdate(entity);
+		return true;
 	}
 
 	@Override
 	public boolean delete(Object entity) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+            session.getCurrentSession().delete(entity);
+        } catch (Exception ex) {
+            return false;
+        }
+ 
+        return true;
 	}
-
-	
-	
-
 }
