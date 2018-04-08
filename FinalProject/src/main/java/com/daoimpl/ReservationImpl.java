@@ -9,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.daoapi.ReservationDao;
 import com.daoimpl.EntityImpl;
+import com.entities.Reservation;
  
 @Repository("ReservationDao")
 @Transactional
-public class ReservationImpl extends EntityImpl<ReservationImpl> implements ReservationDao {
+public class ReservationImpl extends EntityImpl<Reservation> implements ReservationDao {
  
     @Autowired
     SessionFactory session;
- 
+    
+    public List<Reservation> list() {
+        return session.getCurrentSession().createQuery("from Reservation").list();
+    }
    
 }

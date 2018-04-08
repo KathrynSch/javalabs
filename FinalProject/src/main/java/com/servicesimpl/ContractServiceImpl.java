@@ -24,5 +24,16 @@ public class ContractServiceImpl implements ContractService {
     public boolean delete(Contract contract) {
         return contractDao.delete(contract);
     }
+    
+    public Contract getContractFromId(Integer contract_id) {
+    	List<Contract> list = contractDao.getContractFromId(contract_id);
+    	if(list.isEmpty())
+    	{
+    		return null;
+    	}
+    	else {
+    		return list.get(0);
+    	}
+    }
  
 }
