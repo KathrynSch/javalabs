@@ -8,36 +8,14 @@
 <title>Welcome</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
-<body onload="load();">
-	<h2>Welcome to the Nursery Web Application!</h2>
-	<p> Select your nursery : </p>
-
-  	 <table id="table" border=1>
-            <tr> <th> Nursery Id </th> <th> Max Child </th> <th> Max baby </th> <th> Price </th> </tr>
-         
-       </table>
-       <br><br>
-       <p> <a name="nursery" href="nursery/page" >Add or edit nursery</a></p>
-        
-  		
-  		
-  		 <script type="text/javascript">
-    data = ""; 
-    load = function(){ 
-        $.ajax({
-            url:'list',
-            type:'POST',
-            success: function(response){
-                    data = response.data;
-                    for(i=0; i<response.data.length; i++){                  
-                        $("#table").append("<tr class='tr'> <td> "+response.data[i].nursery_id+" </td> <td> "+response.data[i].max_nb_child+" </td> <td> "+response.data[i].max_nb_baby+" </td> <td> "+response.data[i].price_per_hour+" </td> </tr>");
-                    }          
-            }              
-        });
-         
-    }
-         
-    </script>
+<body>
+	<br>
+	<center><h2>Welcome to the Nursery Web Application!</h2>
+	<br><br>
+	<input type="button" onclick="location.href='http://localhost:8080/CRUD/hello/page';" value="Enter" />
+	<br><br>
+	<p> For better navigability and readability, we suggest that you use Google Chrome to browse this website</p>
+	</center>
      
 </body>
 </html>

@@ -27,13 +27,9 @@ public class ChildController {
 		return view;
 	}
 	
-	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
-<<<<<<< HEAD
-	public @ResponseBody Map<String,Object> getSaved(Child child){
-		
-=======
+	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)		
 	public @ResponseBody Map<String, Object> getSaved(Child child){
->>>>>>> 2a092fa5d97d4bbab445c7bfd9f2739ace65c318
+
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		if(childServices.saveOrUpdate(child)){
