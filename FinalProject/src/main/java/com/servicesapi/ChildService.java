@@ -10,4 +10,6 @@ public interface ChildService {
     public List<Child> list();
  
     public boolean delete(Child child);
+    
+    public Child getChildById(Integer child_id);
 }

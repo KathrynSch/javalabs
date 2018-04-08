@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entities.Child;
+import com.entities.Contract;
 import com.servicesapi.ChildService;
 import com.entities.Reservation;
 import com.servicesapi.ReservationService;
+import com.servicesapi.ContractService;
 
 
 @Controller
@@ -26,6 +28,10 @@ public class ReservationController {
 	
 	@Autowired
 	ReservationService reservationServices;
+	@Autowired
+	ContractService contractServices;
+	@Autowired
+	ChildService childServices;
 	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
@@ -92,6 +98,63 @@ public class ReservationController {
 		
 		return getSaved(reservation);
 	}
+	
+	@RequestMapping(value= "/listTempChildren", method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> getTempChildren(String date) throws ParseException{
+		Map<String,Object> map = new HashMap<String,Object>();
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date parse_date = sdf.parse(date);
+		
+		List list = contractServices.getTempChildren(parse_date);
+				
+		map.put("status","200");
+		map.put("data", list);
+		map.put("message","Your record have been deleted successfully");
+		
+		return map;
+		
+	}
+	
+	@RequestMapping(value= "/addTempReservation", method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> addTempReservation(Integer child_id, Integer reservation_id, String date, String period) throws ParseException{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date parse_date = sdf.parse(date);
+		
+		Child child = childServices.getChildById(child_id);
+		Contract contract = contractServices.getContractByChild(child_id).get(0);
+		
+		if (child.getAge()>=2)
+		{
+			if(reservationServices.getChildrenAvailability(parse_date, period) >0) {
+				System.out.println(reservationServices.getChildrenAvailability(parse_date, period));
+				Reservation reservation = new Reservation(reservation_id, contract.getContract_id(), new Integer(1), parse_date, period);
+				getSaved(reservation);
+				map.put("status","200");
+				map.put("message","Reservation successfully");
+			}
+			else {
+				map.put("status","400");
+				map.put("message","Period fully booked for children");
+			}
+		}
+		else {
+			if(reservationServices.getBabyAvailability(parse_date, period) >0) {
+				System.out.println(reservationServices.getBabyAvailability(parse_date, period));
+				Reservation reservation = new Reservation(reservation_id, contract.getContract_id(), new Integer(1), parse_date, period);
+				getSaved(reservation);
+				map.put("status","200");
+				map.put("message","Reservation successfully");
+			}
+			else {
+				map.put("status","400");
+				map.put("message","Period fully booked for babies");
+			}
+		}
+		return map;
+		
+	}
 	
 }

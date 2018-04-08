@@ -24,5 +24,9 @@ public class ChildServiceImpl implements ChildService {
     public boolean delete(Child child) {
         return childDao.delete(child);
     }
+    
+    public Child getChildById(Integer child_id) {
+    	return childDao.getChildById(child_id);
+    }
  
 }
