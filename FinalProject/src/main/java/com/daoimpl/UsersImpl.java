@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
  
 import com.daoapi.UsersDao;
-import com.daoapi.EntityDao;
 import com.entities.Users;
  
 @Repository("UsersDao")
@@ -24,7 +23,8 @@ public class UsersImpl implements UsersDao {
         return true;
     }
  
-    public List<Users> list() {
+    @SuppressWarnings("unchecked")
+	public List<Users> list() {
         return session.getCurrentSession().createQuery("from Users").list();
     }
  

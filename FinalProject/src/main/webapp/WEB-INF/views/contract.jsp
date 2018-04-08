@@ -24,7 +24,7 @@
 	      <li><a href="../nursery/page">Nursery</a></li>
 	      <li><a href="../child/page">Children</a></li>
 	      <li class="active"><a href="../contract/page">Contract</a></li>
-	      <li><a href="#">Reservation</a></li>
+	      <li><a href="../reservation/page">Reservation</a></li>
 	    </ul>
 	  </div>
 	</nav>

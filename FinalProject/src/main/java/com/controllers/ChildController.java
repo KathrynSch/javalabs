@@ -41,6 +41,7 @@ public class ChildController {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> getAll(Child child){
 		Map<String,Object> map = new HashMap<String,Object>();

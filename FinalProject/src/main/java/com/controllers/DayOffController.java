@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entities.DayOff;
+import com.entities.Nursery;
 import com.servicesapi.DayOffService;
 
 @Controller
@@ -20,6 +21,7 @@ public class DayOffController {
 	
 	@Autowired
 	DayOffService dayoffServices;
+	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
 		ModelAndView view = new ModelAndView("dayoff");
@@ -29,15 +31,17 @@ public class DayOffController {
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> getSaved(DayOff dayoff){
+		
 		Map<String,Object> map = new HashMap<String,Object>();
-
+		
 		if(dayoffServices.saveOrUpdate(dayoff)){
 			map.put("status","200");
-			map.put("message","Your record has been saved successfully");
+			map.put("message","Your record have been saved successfully");
 		}
 		
 		return map;
 	}
+	
 	
 	
 	@RequestMapping(value="/list", method=RequestMethod.POST)
