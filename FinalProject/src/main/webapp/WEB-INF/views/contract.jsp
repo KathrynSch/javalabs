@@ -25,7 +25,10 @@
 	      <li><a href="../child/page">Children</a></li>
 	      <li class="active"><a href="../contract/page">Contract</a></li>
 	      <li><a href="../reservation/page">Reservation</a></li>
+<<<<<<< HEAD
 	      <li><a href="../plannedAbsence/page">Planned Absence</a></li>
+=======
+>>>>>>> b86275096aa85814991302a377690526e9087f3d
 	    </ul>
 	  </div>
 	</nav>
@@ -39,8 +42,8 @@
         
         <h3> Contract Details </h3>
         <input type="hidden" id="contract_id">
-        Start Date (yyyy-MM-dd): <input type="date" id="start_date" name="start_date"><br>
-        End Date (yyyy-MM-dd): <input type="date" id="end_date" name="end_date"><br>
+        Start Date: <input type="date" id="start_date" name="start_date" placeholder="YYYY-MM-DD"><br>
+        End Date: <input type="date" id="end_date" name="end_date" placeholder="YYYY-MM-DD"><br>
         Email: <input type="email" id="email" name="email"><br>
         Phone: <input type="tel" id="phone_nb" name="phone_nb"><br>
         <input type="checkbox" id="is_regular" name="is_regular" onClick="regularOptions();"> Regular contract<br>

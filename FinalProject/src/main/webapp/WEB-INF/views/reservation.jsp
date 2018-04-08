@@ -5,7 +5,7 @@
  
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Child</title>
+<title>Reservation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -33,8 +33,8 @@
 	
  <div class="container">
  		
-		<h3>Children</h3>
-        <input type="date" id="date">
+		<h3>Reservation</h3>
+        <input type="date" id="date" placeholder="YYYY-MM-DD">
         <select id="period">
         <option value='AM' selected='selected'>AM</option>
         <option value='PM'>PM</option>

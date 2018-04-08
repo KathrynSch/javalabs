@@ -35,6 +35,14 @@ public class Dayoff{
 	@Column(name = "period_of_day")
 	private String period_of_day;
 
+	protected DayOff() { }
+	
+	public DayOff(Integer day_off_id, Integer nursery_id, Date at_date, String period_of_day) {
+		this.day_off_id = day_off_id;
+		this.nursery_id = nursery_id;
+		this.at_date = at_date;
+		this.period_of_day = period_of_day;
+	}
 	
 	public Integer getDay_off_id() {
 		return this.day_off_id;

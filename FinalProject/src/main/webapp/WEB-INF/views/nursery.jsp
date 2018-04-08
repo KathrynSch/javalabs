@@ -24,7 +24,10 @@
 	      <li><a href="../child/page">Children</a></li>
 	      <li><a href="../contract/page">Contract</a></li>
 	      <li><a href="../reservation/page">Reservation</a></li>
+<<<<<<< HEAD
 	      <li><a href="../plannedAbsence/page">Planned Absence</a></li>
+=======
+>>>>>>> b86275096aa85814991302a377690526e9087f3d
 	    </ul>
 	  </div>
 	</nav>
