@@ -42,4 +42,10 @@ public class ContractImpl extends EntityImpl<Contract> implements ContractDao {
 	    	query.setParameter("child_id", child_id);
 	    	return query.list();
 	    }
+	    
+		 public List getRegularChildren() {
+			Query query = session.getCurrentSession().createSQLQuery("SELECT child.child_id, last_name, first_name FROM contract join child on child.child_id = contract.child_id where is_regular = 1");
+		    return query.list();
+		 }
+
 }

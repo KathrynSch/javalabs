@@ -18,5 +18,7 @@ public interface ContractService {
     
     public List getTempChildren(Date date);
     
+    public List getRegChildren();
+    
     public List<Contract> getContractByChild(Integer child_id);
 }

@@ -30,11 +30,21 @@ public class Plannedabsence{
     private Integer contract_id;
 	
 	@Temporal(TemporalType.DATE)
-    @Column(name="at_date", length=10)
-    private Date at_date;
+    @Column(name="start_date", length=10)
+    private Date start_date;
 	
-	@Column(name="period_of_day", length=10)
-    private String period_of_day;
+	@Temporal(TemporalType.DATE)
+    @Column(name="end_date", length=10)
+    private Date end_date;
+	
+	protected Plannedabsence() { }
+	
+	public Plannedabsence(Integer planned_absence_id, Integer contract_id, Date start_date, Date end_date) {
+		this.planned_absence_id = planned_absence_id;
+		this.contract_id = contract_id;
+		this.start_date = start_date;
+		this.end_date = end_date;
+	}
     
     public Integer getPlanned_absence_id() {
         return this.planned_absence_id;
@@ -52,21 +62,23 @@ public class Plannedabsence{
         this.contract_id = contract_id;
     }
 
-    public Date getAt_date() {
-        return this.at_date;
+    public Date getStart_date() {
+        return this.start_date;
     }
     
-    public void setAt_date(Date at_date) {
-        this.at_date = at_date;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+    
+    public Date getEnd_date() {
+        return this.end_date;
+    }
+    
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
    
-    public String getPeriod_of_day() {
-        return this.period_of_day;
-    }
     
-    public void setPeriod_of_day(String period_of_day) {
-        this.period_of_day = period_of_day;
-    }
 
 }
 

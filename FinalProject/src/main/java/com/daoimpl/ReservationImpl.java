@@ -64,4 +64,11 @@ public class ReservationImpl extends EntityImpl<Reservation> implements Reservat
     	return ((Number) list.get(0)).intValue();
     	
     }
+    
+    public int justifyAbsenceBetweenDates(Date start_date, Date end_date){
+    	Query query = session.getCurrentSession().createQuery("UPDATE Reservation SET absence=3 where at_date >= :start_date and at_date <= :end_date ");
+    	query.setParameter("start_date", start_date);
+    	query.setParameter("end_date", end_date);
+    	return query.executeUpdate();
+	}
 }

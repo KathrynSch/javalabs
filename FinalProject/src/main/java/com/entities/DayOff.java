@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "dayoff")
-public class DayOff{
+public class Dayoff{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

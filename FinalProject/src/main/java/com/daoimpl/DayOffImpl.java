@@ -7,17 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.daoapi.DayOffDao;
+import com.daoapi.DayoffDao;
 import com.daoimpl.EntityImpl;
-import com.entities.DayOff;
+import com.entities.Dayoff;
  
 @Repository("DayOffDao")
 @Transactional
-public class DayOffImpl extends EntityImpl<DayOff> implements DayOffDao {
+public class DayoffImpl extends EntityImpl<Dayoff> implements DayoffDao {
  
     @Autowired
     SessionFactory session;
-    public List<DayOff> list() {
+    public List<Dayoff> list() {
         return session.getCurrentSession().createQuery("from DayOff").list();
     }
    

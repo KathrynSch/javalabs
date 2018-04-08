@@ -19,4 +19,6 @@ public interface ReservationService {
     public Integer getChildrenAvailability( Date date, String period) ;
     
     public Integer getBabyAvailability( Date date, String period);
+    
+    public int justifyAbsenceBetweenDates(Date start_date, Date  end_date);
 }

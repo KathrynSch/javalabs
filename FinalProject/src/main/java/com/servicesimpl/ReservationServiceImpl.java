@@ -41,4 +41,9 @@ public class ReservationServiceImpl implements ReservationService {
     public Integer getBabyAvailability( Date date, String period) {
     	return (5-reservationDao.getBabyAvailability( date, period));
     }
+    
+    public int justifyAbsenceBetweenDates(Date start_date, Date  end_date){
+    	return reservationDao.justifyAbsenceBetweenDates(start_date, end_date);
+    }
+
 }

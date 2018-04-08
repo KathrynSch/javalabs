@@ -42,6 +42,10 @@ public class ContractServiceImpl implements ContractService {
     	return contractDao.getTemporaryChildren(date);
     }
     
+    public List getRegChildren(){
+    	return contractDao.getRegularChildren();
+    }
+    
     public List<Contract> getContractByChild(Integer child_id){
     	return contractDao.getContractByChild(child_id);
     }

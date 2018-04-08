@@ -2,9 +2,9 @@ package com.daoapi;
 
 import java.util.List;
 
-import com.entities.DayOff;
+import com.entities.Dayoff;
 
-public interface DayOffDao extends EntityDao<DayOff>{
+public interface DayoffDao extends EntityDao<Dayoff>{
 
-	 public List<DayOff> list();
+	 public List<Dayoff> list();
 }
