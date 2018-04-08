@@ -22,9 +22,9 @@
 	    <ul class="nav navbar-nav">
 	      <li><a href="../hello/page">Home</a></li>
 	      <li><a href="../nursery/page">Nursery</a></li>
-	      <li class="active"><a href="../child/page">Children</a></li>
+	      <li><a href="../child/page">Children</a></li>
 	      <li><a href="../contract/page">Contract</a></li>
-	      <li><a href="#">Reservation</a></li>
+	      <li class="active"><a href="#">Reservation</a></li>
 	    </ul>
 	  </div>
 	</nav>

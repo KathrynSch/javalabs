@@ -31,11 +31,84 @@
 		<h3>Home Page</h3>
 		  <ul >
 		    <li><a href="#">Check presence list</a></li>
-		    <li><a href="#">Add an offday</a></li>
+		    <li><a href="#">Add an off day</a></li>
 		    <li><a href="#">Generate invoice</a></li>
 		    <li><a href="#">Justify a child's absence</a></li>
 		  </ul>
-		</div>
+		
+		
+        <input type="hidden" id="day_off_id">
+        At Date(yyyy-MM-dd): <input type="date" id="atDate" required="required" name="at_date"><br>
+        Period of Day: <input type="text" id="periodOfDay" required="required" name="period_of_day"><br>
+        <button onclick="submit();">Submit</button><br><br>
+     
+     
+ 
+        <table class="table" border=1>
+            <tr> <th> At Date </th> <th> Period of Day </th> <th> Edit </th> <th> Delete </th> </tr>
+         
+        </table>
+        <br><br>
+      </div>
+             
+     
+    <script type="text/javascript">
+    data = "";
+    submit = function(){
+          
+            $.ajax({
+                url:'saveOrUpdate',
+                type:'POST',
+                data:{
+                	day_off_id:$("#day_off_id").val(),
+                	at_date:$('#atDate').val(),
+                	period_of_day:$('#periodOfDay').val()
+                	},
+                success: function(response){
+                        alert(response.message);
+                        load();    
+                }              
+            });        
+    }
+     
+    delete_ = function(id){     
+         $.ajax({
+            url:'delete',
+            type:'POST',
+            data:{day_off_id:id},
+            success: function(response){
+                    alert(response.message);
+                    load();
+            }              
+        });
+}
+     
+ 
+    edit = function (index){
+        $("#day_off_id").val(data[index].day_off_id);
+        $("#atDate").val(data[index].at_date);
+        $("#periodOfDay").val(data[index].period_of_day);
+    }
+     
+     
+    load = function(){ 
+        $.ajax({
+            url:'list',
+            type:'POST',
+            success: function(response){
+                    data = response.data;
+                    $('.tr').remove();
+                    for(i=0; i<response.data.length; i++){                  
+                        $(".table").append("<tr class='tr'> <td> "+response.data[i].at_date+" </td> <td> "+response.data[i].fperiod_of_day+" </td> <td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].child_id+");'> Delete </a>  </td> </tr>");
+                    }          
+            }              
+        });
+         
+    }
+         
+    </script>
+		  
+	</div>
   
 </body>
 </html>
