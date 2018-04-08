@@ -34,7 +34,7 @@
 		  
 		
         <input type="hidden" id="day_off_id">
-        At Date(yyyy-MM-dd): <input type="date" id="at_date" name="at_date"><br>
+        At Date: <input type="date" id="at_date" name="at_date" placeholder="YYYY-MM-DD"><br>
         Period of Day: <select name='period_of_day' id='period_of_day'>
         	<option value='AM'>AM</option><option value='PM'>PM</option></select><br>
         <button onclick="submit();">Submit</button><br><br>
