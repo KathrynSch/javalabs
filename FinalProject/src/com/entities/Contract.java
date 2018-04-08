@@ -47,8 +47,9 @@ public class Contract{
 	
 	protected Contract() { }
 	
-	public Contract(Integer contract_id, Boolean is_regular, Date start_date, Date end_date, String email, String phone_nb) {
+	public Contract(Integer contract_id, Integer child_id, Boolean is_regular, Date start_date, Date end_date, String email, String phone_nb) {
 		this.contract_id = contract_id;
+		this.child_id = child_id;
 		this.is_regular = is_regular;
 		this.start_date = start_date;
 		this.end_date = end_date;

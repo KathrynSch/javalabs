@@ -29,6 +29,7 @@
 	  </div>
 	</nav>
  
+<<<<<<< HEAD
 <div class="container">		
         <div>
 	        <h3> Child Details </h3>
@@ -52,6 +53,49 @@
      	
      	<table class="table" border=1>
             <tr> <th> Id </th> <th> Child </th> <th> Regular </th><th> Start </th> <th> End </th> <th> Email </th><th> Phone </th> <th> Delete </th> </tr>
+=======
+        <h1> Child Details </h1>
+        <input type="hidden" id="child_id">
+        First Name: <input type="text" id="firstName" required="required" name="first_name"><br>
+        Last Name: <input type="text" id="lastName" required="required" name="last_name"><br>
+        Age: <input type="number" id="age" required="required" name="age"><br>
+        <h1> Contract Details </h1>
+        <input type="hidden" id="contract_id">
+        Start Date (yyyy-MM-dd): <input type="date" id="start_date" name="start_date"><br>
+        End Date (yyyy-MM-dd): <input type="date" id="end_date" name="end_date"><br>
+        Email: <input type="email" id="email" name="email"><br>
+        Phone: <input type="tel" id="phone_nb" name="phone_nb"><br>
+        <input type="checkbox" id="is_regular" name="is_regular" onClick="regularOptions();"> Regular contract<br>
+        <div id="regular">
+        <h1> Regular Reservation</h1>
+        <input type='hidden' id='reservation_id'>
+        Reservation 1:
+        <select name ='on_day1' id='on_day1'>
+        	<option value='No' selected='selected'>No</option><option value='Monday'>Monday</option><option value='Tuesday'>Tuesday</option><option value='Wednesday'>Wednesday</option><option value='Thursday'>Thursday</option><option value='Friday'>Friday</option>
+        	</select><select name='day_period1' id='day_period1'>
+        	<option value='AM'>AM</option><option value='PM'>PM</option></select><br>
+        Reservation 2:
+        <select name ='on_day2' id='on_day2'>
+        	<option value='No' selected='selected'>No</option><option value='Monday'>Monday</option><option value='Tuesday'>Tuesday</option><option value='Wednesday'>Wednesday</option><option value='Thursday'>Thursday</option><option value='Friday'>Friday</option></select>
+        	<select name='day_period2' id='day_period2'>
+        	<option value='AM'>AM</option><option value='PM'>PM</option></select><br>
+        Reservation 3:
+        <select name ='on_day3' id='on_day3'>
+        	<option value='No' selected='selected'>No</option><option value='Monday'>Monday</option><option value='Tuesday'>Tuesday</option><option value='Wednesday'>Wednesday</option><option value='Thursday'>Thursday</option><option value='Friday'>Friday</option></select>
+        	<select name='day_period3' id='day_period3'>
+        	<option value='AM'>AM</option><option value='PM'>PM</option></select><br>
+        Reservation 4:
+        <select name ='on_day4' id='on_day4'>
+        	<option value='No' selected='selected'>No</option><option value='Monday'>Monday</option><option value='Tuesday'>Tuesday</option><option value='Wednesday'>Wednesday</option><option value='Thursday'>Thursday</option><option value='Friday'>Friday</option></select>
+        	<select name='day_period4' id='day_period4'>
+        	<option value='AM'>AM</option><option value='PM'>PM</option></select> <br>
+    	</div>						
+      
+        <button onclick="submit();">Submit</button>
+     	
+     	<table id="table" border=1>
+            <tr> <th> Id </th> <th> Child </th><th> Start </th> <th> End </th> <th> Email </th><th> Phone </th> <th> Delete </th> <th> Reservation </th></tr>
+>>>>>>> 5a25269b3264f79fe995cf1083d46d9bfdaa9b45
          
         </table>
       </div>
@@ -77,9 +121,39 @@
                 	},
                 success: function(response){
                         alert(response.message);
+                        if ($("#is_regular").is(":checked")) {
+                        	$.ajax({
+                				url:'regularReservation',
+                				type:'POST',
+                				data:{
+                					reservation_id: $("#reservation_id").val(),
+                					contract_id:response.contract_id,
+                					on_day1:$("#on_day1").val(),
+                					on_day2:$("#on_day2").val(),
+                					on_day3:$("#on_day3").val(),
+                					on_day4:$("#on_day4").val(),
+                					day_period1:$("#day_period1").val(),
+                					day_period2:$("#day_period2").val(),
+                					day_period3:$("#day_period3").val(),
+                					day_period4:$("#day_period4").val(),                	
+                					},
+                				success: function(response){
+                        			alert(response.message);
+                        			}
+                        		});
+                        }
                         load();    
                 }              
             });        
+    }
+    
+    regularOptions = function(){
+    	if ($("#is_regular").is(":checked")) {
+    		$("#regular").show();	
+    	}
+    	else {
+    		$("#regular").hide();	
+    	}
     }
   
     delete_ = function(id){     
@@ -96,15 +170,25 @@
      
      
     load = function(){ 
-    	alert("loading");
+    	$("#regular").hide();
         $.ajax({
             url:'list',
             type:'POST',
             success: function(response){
                     data = response.data;
                     $('.tr').remove();
+<<<<<<< HEAD
                     for(i=0; i<response.data.length; i++){                  
                         $(".table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].is_regular+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> </tr>");
+=======
+                    for(i=0; i<response.data.length; i++){
+                    	if(response.data[i].is_regular == true){              
+                        	$("#table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Regular</td> </tr>");
+                       	}
+                       	else{
+                       		$("#table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Temporary</td></tr>");
+                       	}
+>>>>>>> 5a25269b3264f79fe995cf1083d46d9bfdaa9b45
                     }          
             }              
         });

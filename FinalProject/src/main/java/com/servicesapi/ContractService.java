@@ -10,4 +10,6 @@ public interface ContractService {
     public List<Contract> list();
  
     public boolean delete(Contract child);
+    
+    public Contract getContractFromId(Integer contract_id);
 }

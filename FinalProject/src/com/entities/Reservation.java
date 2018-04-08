@@ -38,6 +38,15 @@ public class Reservation{
 	@Column(name = "period_of_day")
 	private String period_of_day;
 
+	protected Reservation() { }
+	
+	public Reservation(Integer reservation_id, Integer contract_id, Integer absence, Date at_date, String period_of_day) {
+		this.reservation_id = reservation_id;
+		this.contract_id = contract_id;
+		this.absence = absence;
+		this.at_date = at_date;
+		this.period_of_day = period_of_day;		
+	}
 	
 	public Integer getReservation_id() {
 		return this.reservation_id;
