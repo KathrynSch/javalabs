@@ -29,6 +29,7 @@ public class ChildController {
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> getSaved(Child child){
+		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		if(childServices.saveOrUpdate(child)){
@@ -62,6 +63,7 @@ public class ChildController {
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> delete(Child child){
+		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		if(childServices.delete(child)){

@@ -74,7 +74,7 @@
                     data = response.data;
                     $('.tr').remove();
                     for(i=0; i<response.data.length; i++){                  
-                        $("#table").append("<tr class='tr'> <td> "+response.data[i].max_nb_child+" </td> <td> "+response.data[i].max_nb_baby+" </td> <td> "+response.data[i].price_per_hour+" </td><td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].user_id+");'> Delete </a>  </td> </tr>");
+                        $("#table").append("<tr class='tr'> <td> "+response.data[i].max_nb_child+" </td> <td> "+response.data[i].max_nb_baby+" </td> <td> "+response.data[i].price_per_hour+" </td><td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].nursery_id+");'> Delete </a>  </td> </tr>");
                     }          
             }              
         });

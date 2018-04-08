@@ -26,7 +26,7 @@ public class EntityImpl<E> implements EntityDao<E>{
 	@Override
 	public boolean delete(Object entity) {
 		try {
-            session.getCurrentSession().delete(entity);
+			 session.getCurrentSession().delete(entity);
         } catch (Exception ex) {
             return false;
         }
