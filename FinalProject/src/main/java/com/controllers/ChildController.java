@@ -26,11 +26,12 @@ public class ChildController {
 		ModelAndView view = new ModelAndView("child");
 		return view;
 	}
+
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> getSaved(Child child){
 		Map<String,Object> map = new HashMap<String,Object>();
-		
+
 		if(childServices.saveOrUpdate(child)){
 			map.put("status","200");
 			map.put("message","Your record has been saved successfully");
