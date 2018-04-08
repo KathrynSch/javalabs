@@ -36,4 +36,32 @@ public class ReservationImpl extends EntityImpl<Reservation> implements Reservat
     	query.setParameter("reservation_id", reservation_id);
     	return query.list();
     }
+    
+    public Integer getChildrenAvailability( Date date, String period) {
+    	Query query = session.getCurrentSession().createSQLQuery("select count(DISTINCT(child.child_id)) from reservation join contract on reservation.contract_id = contract.contract_id\r\n" + 
+													    			"join child on child.child_id = contract.child_id\r\n" + 
+													    			"where age >=2\r\n" + 
+													    			"and reservation.at_date = :date \r\n" + 
+													    			"and reservation.period_of_day = :period \r\n" + 
+													    			"and absence =1");
+    	query.setParameter("date", date);
+    	query.setParameter("period", period);
+    	List list = query.list();
+    	return ((Number) list.get(0)).intValue();
+    	
+    }
+    
+    public Integer getBabyAvailability( Date date, String period) {
+    	Query query = session.getCurrentSession().createSQLQuery("select count(DISTINCT(child.child_id)) from reservation join contract on reservation.contract_id = contract.contract_id\r\n" + 
+													    			"join child on child.child_id = contract.child_id\r\n" + 
+													    			"where age <2\r\n" + 
+													    			"and reservation.at_date = :date \r\n" + 
+													    			"and reservation.period_of_day = :period \r\n" + 
+													    			"and absence =1");
+    	query.setParameter("date", date);
+    	query.setParameter("period", period);
+    	List list = query.list();
+    	return ((Number) list.get(0)).intValue();
+    	
+    }
 }

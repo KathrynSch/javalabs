@@ -120,7 +120,7 @@ public class ContractController {
 		System.out.println(period);
 		
 		//get contract object
-		Contract contract = contractServices.getContractFromId(contract_id);
+		Contract contract = contractServices.getContractById(contract_id);
 		
 		Calendar start_date= Calendar.getInstance();
 		start_date.setTime(contract.getStart_date());

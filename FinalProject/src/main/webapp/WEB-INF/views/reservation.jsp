@@ -31,6 +31,7 @@
 	
 	
  <div class="container">
+ 		
 		<h3>Children</h3>
         <input type="date" id="date">
         <select id="period">
@@ -38,7 +39,9 @@
         <option value='PM'>PM</option>
         </select>
         <button onclick="load();">Submit</button><br><br>
-     
+     	
+     	<div id="addReservation">
+     	</div>
  
         <table class="table" border=1>
             <tr> <th> Last Name </th> <th> First Name </th> <th>Age </th><th>Absence </th> <th> Delete </th> </tr>
@@ -78,6 +81,7 @@
 				}
 			});
 	}
+	
      
   
     load = function(){ 
@@ -108,7 +112,37 @@
                     }          
             }              
         });
+        $.ajax({
+        	url:'listTempChildren',
+        	type:'POST',
+        	data:{ date: $("#date").val()},
+        	success: function(response){
+        		$("#addReservation").html("");
+        		data = response.data;
+        		$("#addReservation").append("<h3>Add temporary reservation</h3><br><input type='hidden' id='reservation_id'><select id='childLabel'>");
+        		for(i=0; i<data.length; i++){
+        			$("#childLabel").append("<option value="+data[i][0]+">"+data[i][1]+" "+data[i][2]+"</option>");
+        		}
+        		$("#addReservation").append("</select><button onclick='addReservation();'>Add</button><br><br> ");
+        			
+        	}
+        });
          
+    }
+    
+    addReservation = function(){
+    	$.ajax({
+    		url:'addTempReservation',
+    		type:'POST',
+    		data: { 
+    			child_id: $("#childLabel").val(),
+    			reservation_id: $("#reservation_id").val(),
+    			date:$("#date").val(),
+                period:$('#period').val() },
+    		success: function(response){
+    			load();
+    			}
+    		});
     }
          
     </script>

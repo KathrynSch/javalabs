@@ -33,4 +33,12 @@ public class ReservationServiceImpl implements ReservationService {
     public List<Reservation> getReservationById(Integer reservation_id) {
     	return reservationDao.getReservationById(reservation_id);
     }
+    
+    public Integer getChildrenAvailability( Date date, String period) {
+    	return (20-reservationDao.getChildrenAvailability( date, period));
+    }
+    
+    public Integer getBabyAvailability( Date date, String period) {
+    	return (5-reservationDao.getBabyAvailability( date, period));
+    }
 }

@@ -15,4 +15,8 @@ public interface ReservationService {
     public List listByDate(Date parse_date, String period);
     
     public List<Reservation> getReservationById(Integer reservation_id);
+    
+    public Integer getChildrenAvailability( Date date, String period) ;
+    
+    public Integer getBabyAvailability( Date date, String period);
 }
