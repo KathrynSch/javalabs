@@ -44,6 +44,17 @@ public class Contract{
 	
 	@Column(name = "phone_nb")
 	private String phone_nb;
+	
+	protected Contract() { }
+	
+	public Contract(Integer contract_id, Boolean is_regular, Date start_date, Date end_date, String email, String phone_nb) {
+		this.contract_id = contract_id;
+		this.is_regular = is_regular;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.email = email;
+		this.phone_nb = phone_nb;
+	}
 
 	
 	public Integer getContract_id() {

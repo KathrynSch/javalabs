@@ -25,6 +25,7 @@
              
      
     <script type="text/javascript">
+    
     data = "";
     submit = function(){
           
@@ -54,17 +55,15 @@
                     load();
             }              
         });
-}
+	}
      
  
     edit = function (index){
         $("#nursery_id").val(data[index].nursery_id);
         $("#max_nb_child").val(data[index].max_nb_child);
         $("#max_nb_baby").val(data[index].max_nb_baby);
-        $("#price_per_hour").val(data[index].price_per_hour);
-         
+        $("#price_per_hour").val(data[index].price_per_hour);      
     }
-     
      
     load = function(){ 
         $.ajax({
@@ -77,8 +76,7 @@
                         $("#table").append("<tr class='tr'> <td> "+response.data[i].max_nb_child+" </td> <td> "+response.data[i].max_nb_baby+" </td> <td> "+response.data[i].price_per_hour+" </td><td> <a href='#' onclick= edit("+i+");> Edit </a>  </td> </td> <td> <a href='#' onclick='delete_("+response.data[i].nursery_id+");'> Delete </a>  </td> </tr>");
                     }          
             }              
-        });
-         
+        });  
     }
          
     </script>

@@ -31,6 +31,15 @@ public class Child{
 	@Column(name = "age")
 	private Integer age;
 
+	protected Child() { }
+	
+	public Child(Integer child_id, String first_name, String last_name, Integer age) {
+		this.child_id = child_id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.age = age;
+	}
+	
 	public Integer getChild_id() {
 		return this.child_id;
 	}
