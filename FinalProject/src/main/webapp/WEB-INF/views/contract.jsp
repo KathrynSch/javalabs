@@ -20,7 +20,7 @@
 	      <a class="navbar-brand" href="#">NurseryWebApp</a>
 	    </div>
 	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="../hello/page">Home</a></li>
+	      <li><a href="../hello/page">Home</a></li>
 	      <li><a href="../nursery/page">Nursery</a></li>
 	      <li><a href="../child/page">Children</a></li>
 	      <li class="active"><a href="../contract/page">Contract</a></li>
@@ -28,46 +28,24 @@
 	    </ul>
 	  </div>
 	</nav>
- 
-<<<<<<< HEAD
-<div class="container">		
-        <div>
-	        <h3> Child Details </h3>
-	        <input type="hidden" id="child_id">
-	        First Name: <input type="text" id="firstName" required="required" name="first_name"><br>
-	        Last Name: <input type="text" id="lastName" required="required" name="last_name"><br>
-	        Age: <input type="number" id="age" required="required" name="age"><br><br>
-        </div>
-        
-        <div>
-	        <h3> Contract Details </h3>
-	        <input type="hidden" id="contract_id">
-	        <input type="checkbox" id="is_regular" name="is_regular" value=true> Regular contract<br>
-	        Start Date: <input type="date" id="start_date" name="start_date"><br>
-	        End Date: <input type="date" id="end_date" name="end_date"><br>
-	        Email: <input type="email" id="email" name="email"><br>
-	        Phone: <input type="tel" id="phone_nb" name="phone_nb"><br><br>
-	        <button onclick="submit();">Submit</button> <br><br>
-     	</div>
 
-     	
-     	<table class="table" border=1>
-            <tr> <th> Id </th> <th> Child </th> <th> Regular </th><th> Start </th> <th> End </th> <th> Email </th><th> Phone </th> <th> Delete </th> </tr>
-=======
-        <h1> Child Details </h1>
+	<div class="container">
+        <h3> Child Details </h3>
         <input type="hidden" id="child_id">
         First Name: <input type="text" id="firstName" required="required" name="first_name"><br>
         Last Name: <input type="text" id="lastName" required="required" name="last_name"><br>
         Age: <input type="number" id="age" required="required" name="age"><br>
-        <h1> Contract Details </h1>
+        
+        <h3> Contract Details </h3>
         <input type="hidden" id="contract_id">
         Start Date (yyyy-MM-dd): <input type="date" id="start_date" name="start_date"><br>
         End Date (yyyy-MM-dd): <input type="date" id="end_date" name="end_date"><br>
         Email: <input type="email" id="email" name="email"><br>
         Phone: <input type="tel" id="phone_nb" name="phone_nb"><br>
         <input type="checkbox" id="is_regular" name="is_regular" onClick="regularOptions();"> Regular contract<br>
+        
         <div id="regular">
-        <h1> Regular Reservation</h1>
+        <h3> Regular Reservation</h3>
         <input type='hidden' id='reservation_id'>
         Reservation 1:
         <select name ='on_day1' id='on_day1'>
@@ -91,14 +69,13 @@
         	<option value='AM'>AM</option><option value='PM'>PM</option></select> <br>
     	</div>						
       
-        <button onclick="submit();">Submit</button>
+        <button onclick="submit();">Submit</button><br><br>
      	
-     	<table id="table" border=1>
-            <tr> <th> Id </th> <th> Child </th><th> Start </th> <th> End </th> <th> Email </th><th> Phone </th> <th> Delete </th> <th> Reservation </th></tr>
->>>>>>> 5a25269b3264f79fe995cf1083d46d9bfdaa9b45
-         
+     	<table class="table" border=1>
+            <tr> <th> Id </th> <th> Child </th><th> Start </th> <th> End </th> <th> Email </th><th> Phone </th> <th> Delete </th> <th> Reservation </th></tr>         
         </table>
-      </div>
+  </div>
+
              
      
     <script type="text/javascript">
@@ -177,18 +154,13 @@
             success: function(response){
                     data = response.data;
                     $('.tr').remove();
-<<<<<<< HEAD
-                    for(i=0; i<response.data.length; i++){                  
-                        $(".table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].is_regular+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> </tr>");
-=======
                     for(i=0; i<response.data.length; i++){
                     	if(response.data[i].is_regular == true){              
-                        	$("#table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Regular</td> </tr>");
+                        	$(".table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Regular</td> </tr>");
                        	}
                        	else{
-                       		$("#table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Temporary</td></tr>");
+                       		$(".table").append("<tr class='tr'> <td> "+response.data[i].contract_id+" </td> <td> "+response.data[i].child_id+" </td> <td> "+response.data[i].start_date+" </td> <td> "+response.data[i].end_date+" </td> <td> "+response.data[i].email+" </td> <td> "+response.data[i].phone_nb+" </td> <td> <a href='#' onclick='delete_("+response.data[i].contract_id+");'> Delete </a></td> <td> Temporary</td></tr>");
                        	}
->>>>>>> 5a25269b3264f79fe995cf1083d46d9bfdaa9b45
                     }          
             }              
         });
