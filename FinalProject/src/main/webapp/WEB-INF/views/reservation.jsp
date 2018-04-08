@@ -62,12 +62,27 @@
                     load();
             }              
         });
+        
 }
+
+	checkAbsence = function(state, id){
+		$.ajax({
+			url:'updateAbsence',
+			type:'POST',
+			data:{
+				state:state,
+				reservation_id:id
+				},
+			success: function(){
+				load();
+				}
+			});
+	}
      
   
     load = function(){ 
         $.ajax({
-            url:'listFromDate',
+            url:'listByDate',
             type:'POST',
             data:{
                 date:$("#date").val(),
@@ -76,8 +91,20 @@
             success: function(response){
                     data = response.data;
                     $('.tr').remove();
-                    for(i=0; i<response.data.length; i++){                  
-                        $(".table").append("<tr class='tr'> <td> "+response.data[i].last_name+" </td> <td> "+response.data[i].first_name+" </td> <td> "+response.data[i].age+" </td> <td> "+response.data[i].absence+" </td><td> <a href='#' onclick='delete_("+response.data[i].reservation_id+");'> Delete </a>  </td> </tr>");
+                    for(i=0; i<response.data.length; i++){ 
+                    	if(response.data[i][5] ==1) //present
+                    	{         
+                        	$(".table").append("<tr class='tr'> <td> "+response.data[i][2]+" </td> <td> "+response.data[i][1]+" </td> <td> "+response.data[i][3]+" </td> <td><form><input type='radio' checked>Present <input type='radio' onclick='checkAbsence("+2+","+response.data[i][4]+");'>Absent<input type='radio' onclick='checkAbsence("+3+","+response.data[i][4]+");'>Justified</form></td><td> <a href='#' onclick='delete_("+response.data[i][4]+");'> Delete </a>  </td> </tr>");
+                    	}
+                    	if(response.data[i][5] ==2) //absent
+                    	{         
+                        	$(".table").append("<tr class='tr'> <td> "+response.data[i][2]+" </td> <td> "+response.data[i][1]+" </td> <td> "+response.data[i][3]+" </td> <td><form><input type='radio' onclick='checkAbsence("+1+","+response.data[i][4]+");'>Present <input type='radio' checked>Absent<input type='radio' onclick='checkAbsence("+3+","+response.data[i][4]+");'>Justified</form></td><td> <a href='#' onclick='delete_("+response.data[i][4]+");'> Delete </a>  </td> </tr>");
+                    	}
+                    	if(response.data[i][5] ==3) //justified
+                    	{         
+                        	$(".table").append("<tr class='tr'> <td> "+response.data[i][2]+" </td> <td> "+response.data[i][1]+" </td> <td> "+response.data[i][3]+" </td> <td><form><input type='radio' onclick='checkAbsence("+1+","+response.data[i][4]+");'>Present <input type='radio' onclick='checkAbsence("+2+","+response.data[i][4]+");'>Absent<input type='radio' checked>Justified</form></td><td> <a href='#' onclick='delete_("+response.data[i][4]+");'> Delete </a>  </td> </tr>");
+                    	}
+                    	
                     }          
             }              
         });

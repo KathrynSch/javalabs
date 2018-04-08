@@ -12,5 +12,7 @@ public interface ReservationService {
  
     public boolean delete(Reservation reservation);
     
-    public List listFromDate(Date parse_date, String period);
+    public List listByDate(Date parse_date, String period);
+    
+    public List<Reservation> getReservationById(Integer reservation_id);
 }

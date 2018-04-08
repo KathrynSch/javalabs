@@ -46,25 +46,25 @@ public class ReservationController {
 	}
 	
 	
-	@RequestMapping(value="/listFromDate", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getAllfromDate(String date, String period) throws ParseException{
+	@RequestMapping(value="/listByDate", method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> getAllByDate(String date, String period) throws ParseException{
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date parse_date = sdf.parse(date);
 	
-			List list = reservationServices.listFromDate(parse_date, period);
-			
-			if (list != null){
-				map.put("status","200");
-				map.put("message","Data found");
-				map.put("data", list);
-			}else{
-				map.put("status","404");
-				map.put("message","Data not found");
-				
-			}
+		List<Object[]> list = reservationServices.listByDate(parse_date, period);
 		
+		if (list != null){
+			map.put("status","200");
+			map.put("message","Data found");
+			map.put("data", list);
+		}else{
+			map.put("status","404");
+			map.put("message","Data not found");
+			
+		}
+	
 		return map;
 	}
 	
@@ -81,5 +81,17 @@ public class ReservationController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value="/updateAbsence", method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> updateAbsence(Integer state, Integer reservation_id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		System.out.println(state);		
+		Reservation reservation = reservationServices.getReservationById(reservation_id).get(0);
+		reservation.setAbsence(state);
+		
+		return getSaved(reservation);
+	}
+		
 	
 }

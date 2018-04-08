@@ -8,5 +8,6 @@ import com.entities.Reservation;
 public interface ReservationDao extends EntityDao<Reservation>{
 
 	 public List<Reservation> list();
-	 public List getChildrenFromDate(Date date, String period);
+	 public List getChildrenByDate(Date date, String period);
+	 public List<Reservation> getReservationById(Integer reservation_id);
 }
