@@ -23,7 +23,7 @@ public class ContractImpl extends EntityImpl<Contract> implements ContractDao {
 	        return session.getCurrentSession().createQuery("from Contract").list();
 	    }
 	    
-	    public List<Contract> getContractFromId(Integer contract_id) {
+	    public List<Contract> getContractById(Integer contract_id) {
 	    	Query query = session.getCurrentSession().createQuery("from Contract where contract_id = :contract_id");
 	    	query.setParameter("contract_id", contract_id);
 	    	return query.list();

@@ -26,8 +26,11 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationDao.delete(reservation);
     }
     
-    public List listFromDate(Date date, String period) {
-    	return reservationDao.getChildrenFromDate(date, period);
+    public List listByDate(Date date, String period) {
+    	return reservationDao.getChildrenByDate(date, period);
     }
- 
+    
+    public List<Reservation> getReservationById(Integer reservation_id) {
+    	return reservationDao.getReservationById(reservation_id);
+    }
 }

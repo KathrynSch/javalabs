@@ -26,7 +26,7 @@ public class ContractServiceImpl implements ContractService {
     }
     
     public Contract getContractFromId(Integer contract_id) {
-    	List<Contract> list = contractDao.getContractFromId(contract_id);
+    	List<Contract> list = contractDao.getContractById(contract_id);
     	if(list.isEmpty())
     	{
     		return null;

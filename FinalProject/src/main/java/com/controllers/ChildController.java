@@ -46,6 +46,8 @@ public class ChildController {
 	
 			List<Child> list = childServices.list();
 			
+			System.out.println(list.get(0).getClass());
+			
 			if (list != null){
 				map.put("status","200");
 				map.put("message","Data found");
