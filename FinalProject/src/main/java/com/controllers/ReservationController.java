@@ -1,5 +1,8 @@
 package com.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,25 +16,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.entities.Child;
 import com.servicesapi.ChildService;
+import com.entities.Reservation;
+import com.servicesapi.ReservationService;
+
 
 @Controller
-@RequestMapping("child")
+@RequestMapping("reservation")
 public class ReservationController {
 	
 	@Autowired
-	ChildService childServices;
+	ReservationService reservationServices;
 	
 	@RequestMapping(value="/page", method = RequestMethod.GET)
 	public ModelAndView getPage(){
-		ModelAndView view = new ModelAndView("child");
+		ModelAndView view = new ModelAndView("reservation");
 		return view;
 	}
 	
 	@RequestMapping(value="/saveOrUpdate", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getSaved(Child child){
+	public @ResponseBody Map<String,Object> getSaved(Reservation reservation){
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		if(childServices.saveOrUpdate(child)){
+		if(reservationServices.saveOrUpdate(reservation)){
 			map.put("status","200");
 			map.put("message","Your record has been saved successfully");
 		}
@@ -40,11 +46,14 @@ public class ReservationController {
 	}
 	
 	
-	@RequestMapping(value="/list", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> getAll(Child child){
+	@RequestMapping(value="/listFromDate", method=RequestMethod.POST)
+	public @ResponseBody Map<String,Object> getAllfromDate(String date, String period) throws ParseException{
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date parse_date = sdf.parse(date);
 	
-			List<Child> list = childServices.list();
+			List list = reservationServices.listFromDate(parse_date, period);
 			
 			if (list != null){
 				map.put("status","200");
@@ -61,11 +70,11 @@ public class ReservationController {
 	
 	
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public @ResponseBody Map<String,Object> delete(Child child){
+	public @ResponseBody Map<String,Object> delete(Reservation reservation){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		if(childServices.delete(child)){
+		if(reservationServices.delete(reservation)){
 			map.put("status","200");
 			map.put("message","Your record have been deleted successfully");
 		}
