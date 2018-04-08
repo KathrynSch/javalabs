@@ -16,7 +16,7 @@ import com.servicesapi.ChildService;
 
 @Controller
 @RequestMapping("child")
-public class ChildController {
+public class ReservationController {
 	
 	@Autowired
 	ChildService childServices;
